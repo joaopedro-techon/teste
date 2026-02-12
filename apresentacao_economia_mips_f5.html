@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apresentação - Economia de MIPS F5</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            color: #ff6b35;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .card .value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .card .subtitle {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        th:nth-child(1) { width: 9%; }
+        th:nth-child(2) { width: 7%; }
+        th:nth-child(3) { width: 7%; }
+        th:nth-child(4) { width: 7%; }
+        th:nth-child(5) { width: 7%; }
+        th:nth-child(6) { width: 7%; }
+        th:nth-child(7) { width: 8%; }
+        th:nth-child(8) { width: 8%; }
+        th:nth-child(9) { width: 30%; }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tbody tr {
+            transition: background-color 0.2s;
+        }
+
+        tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        .number {
+            text-align: right;
+            font-family: 'Courier New', monospace;
+            font-weight: 500;
+        }
+
+        .reducao {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .reducao.positiva {
+            color: #28a745;
+        }
+
+        .reducao.negativa {
+            color: #dc3545;
+        }
+
+        .observacao {
+            font-size: 0.9em;
+            color: #555;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .highlight {
+            background-color: #fff3cd !important;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            color: #ff6b35;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #ff6b35;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            table {
+                font-size: 0.85em;
+            }
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Economia de MIPS - F5</h1>
+            <p>Análise de Redução de Consumo - Novembro 2025 a Dezembro 2026</p>
+        </div>
+
+        <div class="content">
+            <div class="summary-cards">
+                <div class="card">
+                    <h3>Redução Total</h3>
+                    <div class="value">48,0%</div>
+                    <div class="subtitle">Nov/2025 → Dez/2026</div>
+                </div>
+                <div class="card">
+                    <h3>Economia Mensal</h3>
+                    <div class="value">3.088</div>
+                    <div class="subtitle">MIPS economizados</div>
+                </div>
+                <div class="card">
+                    <h3>Consumo Atual</h3>
+                    <div class="value">3.349</div>
+                    <div class="subtitle">MIPS/mês (Dez/2026)</div>
+                </div>
+                <div class="card">
+                    <h3>Consumo Inicial</h3>
+                    <div class="value">6.437</div>
+                    <div class="subtitle">MIPS/mês (Nov/2025)</div>
+                </div>
+            </div>
+
+            <h2 class="section-title">📈 Evolução Mensal do Consumo de MIPS</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mês/Ano</th>
+                        <th>Total</th>
+                        <th>Online</th>
+                        <th>Consultas</th>
+                        <th>Outros</th>
+                        <th>Offline</th>
+                        <th>Redução Total %</th>
+                        <th>Redução Consultas %</th>
+                        <th>Observações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-dados">
+                    <!-- Dados serão inseridos via JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            <p>Relatório gerado em <span id="data-geracao"></span></p>
+        </div>
+    </div>
+
+    <script>
+        const dados = [
+            {
+                mes: "Novembro/2025",
+                total: 6437,
+                online: 4763,
+                consultas: 4689,
+                outros: 74,
+                offline: 1674,
+                reducao: null,
+                observacao: ""
+            },
+            {
+                mes: "Dezembro/2025",
+                total: 7747,
+                online: 6111,
+                consultas: 6062,
+                outros: 49,
+                offline: 1636,
+                reducao: -20.3,
+                observacao: ""
+            },
+            {
+                mes: "Janeiro/2026",
+                total: 5427,
+                online: 3651,
+                consultas: 3578,
+                outros: 73,
+                offline: 1776,
+                reducao: 29.9,
+                observacao: "Redução aconteceu devido a interrupção do processo de atualização automático do F5 pela consulta."
+            },
+            {
+                mes: "Fevereiro/2026",
+                total: 5427,
+                online: 3651,
+                consultas: 3578,
+                outros: 73,
+                offline: 1776,
+                reducao: 0.0,
+                observacao: ""
+            },
+            {
+                mes: "Março/2026",
+                total: 5427,
+                online: 3651,
+                consultas: 3578,
+                outros: 73,
+                offline: 1776,
+                reducao: 0.0,
+                observacao: ""
+            },
+            {
+                mes: "Abril/2026",
+                total: 3349,
+                online: 1573,
+                consultas: 1500,
+                outros: 73,
+                offline: 1776,
+                reducao: 38.3,
+                observacao: "Abertura 100% do piloto; Não vamos conseguir economizar as chamadas em SALDOS para o F5"
+            },
+            {
+                mes: "Maio/2026",
+                total: 3349,
+                online: 1573,
+                consultas: 1500,
+                outros: 73,
+                offline: 1776,
+                reducao: 0.0,
+                observacao: ""
+            },
+            {
+                mes: "Junho/2026",
+                total: 3349,
+                online: 1573,
+                consultas: 1500,
+                outros: 73,
+                offline: 1776,
+                reducao: 0.0,
+                observacao: ""
+            },
+            {
+                mes: "Julho/2026",
+                total: 3349,
+                online: 1573,
+                consultas: 1500,
+                outros: 73,
+                offline: 1776,
+                reducao: 0.0,
+                observacao: ""
+            },
+            {
+                mes: "Agosto/2026",
+                total: 3349,
+                online: 1573,
+                consultas: 1500,
+                outros: 73,
+                offline: 1776,
+                reducao: 0.0,
+                observacao: ""
+            },
+            {
+                mes: "Setembro/2026",
+                total: 3349,
+                online: 1573,
+                consultas: 1500,
+                outros: 73,
+                offline: 1776,
+                reducao: 0.0,
+                observacao: ""
+            },
+            {
+                mes: "Outubro/2026",
+                total: 3349,
+                online: 1573,
+                consultas: 1500,
+                outros: 73,
+                offline: 1776,
+                reducao: 0.0,
+                observacao: ""
+            },
+            {
+                mes: "Novembro/2026",
+                total: 3349,
+                online: 1573,
+                consultas: 1500,
+                outros: 73,
+                offline: 1776,
+                reducao: 0.0,
+                observacao: ""
+            },
+            {
+                mes: "Dezembro/2026",
+                total: 3349,
+                online: 1573,
+                consultas: 1500,
+                outros: 73,
+                offline: 1776,
+                reducao: 0.0,
+                observacao: ""
+            }
+        ];
+
+        function formatarNumero(num) {
+            return num.toLocaleString('pt-BR');
+        }
+
+        function calcularReducaoPercentual(atual, anterior) {
+            if (anterior === null || anterior === 0) return null;
+            return ((anterior - atual) / anterior * 100).toFixed(1);
+        }
+
+        function renderizarTabela() {
+            const tbody = document.getElementById('tabela-dados');
+            let totalAnterior = null;
+            let consultasAnterior = null;
+
+            dados.forEach((item, index) => {
+                const tr = document.createElement('tr');
+                
+                // Destacar meses com reduções significativas
+                if (item.reducao && item.reducao > 10) {
+                    tr.classList.add('highlight');
+                }
+
+                // Calcular redução do total
+                let reducaoTexto = '-';
+                if (item.reducao !== null) {
+                    if (item.reducao > 0) {
+                        reducaoTexto = `<span class="reducao positiva">-${item.reducao}%</span>`;
+                    } else if (item.reducao < 0) {
+                        reducaoTexto = `<span class="reducao negativa">+${Math.abs(item.reducao)}%</span>`;
+                    } else {
+                        reducaoTexto = '<span class="reducao">0%</span>';
+                    }
+                }
+
+                // Calcular redução de consultas
+                let reducaoConsultasTexto = '-';
+                if (consultasAnterior !== null && consultasAnterior > 0) {
+                    const reducaoConsultas = ((consultasAnterior - item.consultas) / consultasAnterior * 100).toFixed(1);
+                    if (reducaoConsultas > 0) {
+                        reducaoConsultasTexto = `<span class="reducao positiva">-${reducaoConsultas}%</span>`;
+                    } else if (reducaoConsultas < 0) {
+                        reducaoConsultasTexto = `<span class="reducao negativa">+${Math.abs(reducaoConsultas)}%</span>`;
+                    } else {
+                        reducaoConsultasTexto = '<span class="reducao">0%</span>';
+                    }
+                }
+
+                tr.innerHTML = `
+                    <td><strong>${item.mes}</strong></td>
+                    <td class="number">${formatarNumero(item.total)}</td>
+                    <td class="number">${formatarNumero(item.online)}</td>
+                    <td class="number">${formatarNumero(item.consultas)}</td>
+                    <td class="number">${formatarNumero(item.outros)}</td>
+                    <td class="number">${formatarNumero(item.offline)}</td>
+                    <td>${reducaoTexto}</td>
+                    <td>${reducaoConsultasTexto}</td>
+                    <td class="observacao">${item.observacao || '-'}</td>
+                `;
+
+                tbody.appendChild(tr);
+                totalAnterior = item.total;
+                consultasAnterior = item.consultas;
+            });
+        }
+
+        function atualizarDataGeracao() {
+            const data = new Date();
+            const dataFormatada = data.toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            document.getElementById('data-geracao').textContent = dataFormatada;
+        }
+
+        // Inicializar
+        renderizarTabela();
+        atualizarDataGeracao();
+    </script>
+</body>
+</html>
+
